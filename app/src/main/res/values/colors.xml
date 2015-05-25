@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="nearly_black">#313131</color>
+    <color name="focused_yellow">#AFB315</color>
     <color name="brown">#876D13</color>
+    <color name="selected_brown">#604613</color>
     <color name="green">#668113</color>
+    <color name="selected_green">#3F4F0d</color>
     <color name="red">#B0281A</color>
+    <color name="selected_red">#7D1918</color>
     <color name="blue">#268474</color>
+    <color name="selected_blue">#144A40</color>
 </resources>
