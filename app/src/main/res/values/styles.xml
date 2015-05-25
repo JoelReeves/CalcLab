@@ -5,4 +5,28 @@
 
     </style>
 
+    <style name="DisplayText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/display_paddingTop</item>
+        <item name="android:paddingBottom">@dimen/display_paddingBottom</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/display_textSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/nearly_black</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:text">@string/default_display</item>
+        <item name="android:editable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:maxLength">10</item>
+        <item name="android:inputType">none</item>
+    </style>
+
+    <style name="CalculatorButtons">
+        <item name="android:layout_width">@dimen/buttons_width</item>
+        <item name="android:layout_height">@dimen/buttons_height</item>
+        <item name="android:layout_margin">@dimen/buttons_margin</item>
+    </style>
+
 </resources>

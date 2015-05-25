@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 repositories {
-    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 android {
@@ -15,6 +15,9 @@ android {
         versionCode 1
         versionName "0.1"
     }
+    lintOptions {
+        abortOnError false
+    }
     signingConfigs {
         release {
             storeFile file (STORE_FILE)
@@ -26,7 +29,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
 
@@ -49,7 +51,29 @@ android {
     }
 }
 
+tasks.withType(Test) {
+    scanForTestClasses = false
+    include "**/*Test.class"
+    include "**/*Tests.class"
+
+    test {
+        // set JVM arguments for the test JVM(s)
+        jvmArgs '-noverify'
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:22.1.1'
+
+    testCompile 'junit:junit:4.12'
+    testCompile('org.robolectric:robolectric:3.0-SNAPSHOT') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    testCompile ('org.robolectric:shadows-support-v4:3.0-SNAPSHOT') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
 }
