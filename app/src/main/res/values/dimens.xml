@@ -12,7 +12,8 @@
     <dimen name="buttons_width">60dp</dimen>
     <dimen name="buttons_height">60dp</dimen>
     <dimen name="buttons_margin">5dp</dimen>
+    <dimen name="button_textSize">30sp</dimen>
     <dimen name="button_zero_width">130dp</dimen>
-    <dimen name="button_clear_width">200dp</dimen>
+    <dimen name="button_equal_width">200dp</dimen>
 
 </resources>

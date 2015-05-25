@@ -23,10 +23,33 @@
         <item name="android:inputType">none</item>
     </style>
 
-    <style name="CalculatorButtons">
+    <style name="BaseButton">
         <item name="android:layout_width">@dimen/buttons_width</item>
         <item name="android:layout_height">@dimen/buttons_height</item>
         <item name="android:layout_margin">@dimen/buttons_margin</item>
+        <item name="android:textSize">@dimen/button_textSize</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Numbers" parent="BaseButton">
+        <item name="android:background">@color/brown</item>
+    </style>
+
+    <style name="Zero" parent="Numbers">
+        <item name="android:layout_width">@dimen/button_zero_width</item>
+    </style>
+
+    <style name="Operators" parent="BaseButton">
+        <item name="android:background">@color/green</item>
+    </style>
+
+    <style name="Clear" parent="BaseButton">
+        <item name="android:background">@color/red</item>
+    </style>
+
+    <style name="Equal" parent="BaseButton">
+        <item name="android:layout_width">@dimen/button_equal_width</item>
+        <item name="android:background">@color/blue</item>
     </style>
 
 </resources>
