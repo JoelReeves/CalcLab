@@ -2,20 +2,17 @@ package com.bromancelabs.calclab.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.bromancelabs.calclab.BaseApplication;
 import com.bromancelabs.calclab.R;
-import com.bromancelabs.calclab.events.BaseEvent;
 import com.bromancelabs.calclab.events.NumberEvent;
 import com.bromancelabs.calclab.events.OperatorEvent;
 
-public class ButtonsFragment extends Fragment {
+public class ButtonsFragment extends BaseFragment {
 
     private View view;
 
@@ -95,9 +92,5 @@ public class ButtonsFragment extends Fragment {
                 Toast.makeText(getActivity(), ((Button) v).getText(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void postToBus(BaseEvent event) {
-        BaseApplication.postToBus(event);
     }
 }

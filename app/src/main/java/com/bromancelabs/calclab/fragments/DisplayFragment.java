@@ -2,20 +2,17 @@ package com.bromancelabs.calclab.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.bromancelabs.calclab.BaseApplication;
 import com.bromancelabs.calclab.R;
 import com.bromancelabs.calclab.events.DisplayEvent;
 import com.bromancelabs.calclab.events.OperatorEvent;
-import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-public class DisplayFragment extends Fragment {
+public class DisplayFragment extends BaseFragment {
     private View view;
     private EditText display;
 
@@ -36,18 +33,6 @@ public class DisplayFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        getAppBus().register(this);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        getAppBus().unregister(this);
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         view = null;
@@ -65,9 +50,5 @@ public class DisplayFragment extends Fragment {
 
     private void setDisplay(String displayString) {
         display.setText(displayString);
-    }
-
-    private Bus getAppBus() {
-        return BaseApplication.getInstance().getBus();
     }
 }

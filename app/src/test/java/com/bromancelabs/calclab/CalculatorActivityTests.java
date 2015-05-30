@@ -3,11 +3,7 @@ package com.bromancelabs.calclab;
 import android.support.v4.app.Fragment;
 
 import com.bromancelabs.calclab.activities.CalculatorActivity;
-import com.bromancelabs.calclab.events.BaseEvent;
-import com.bromancelabs.calclab.events.DisplayEvent;
-import com.bromancelabs.calclab.events.NumberEvent;
-import com.bromancelabs.calclab.support.BusHelper;
-import com.squareup.otto.Bus;
+import com.bromancelabs.calclab.fragments.CalculatorStateFragment;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +12,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -26,8 +20,6 @@ import static org.junit.Assert.assertTrue;
 public class CalculatorActivityTests {
 
     private CalculatorActivity activity;
-    private Bus bus;
-    private BusHelper busHelper;
 
     @Before
     public void setup() throws Exception {
@@ -36,10 +28,6 @@ public class CalculatorActivityTests {
                .start()
                .resume()
                .get();
-
-        bus = BaseApplication.getInstance().getBus();
-        busHelper = new BusHelper();
-        bus.register(busHelper);
     }
 
     @Test
@@ -58,16 +46,18 @@ public class CalculatorActivityTests {
     }
 
     @Test
-    public void numberEventShouldFireDisplayEvent() throws Exception {
-        String NUMBER_VALUE = "1";
-        bus.post(new NumberEvent(NUMBER_VALUE));
-        BaseEvent event = busHelper.getLastEvent();
-        assertTrue(event instanceof DisplayEvent);
-        assertThat(busHelper.numberOfEvents(), equalTo(2));
-        assertThat(((DisplayEvent) event).getValue(), equalTo(NUMBER_VALUE));
+    public void shouldHaveCalculatorStateFragment() throws Exception {
+        Fragment fragment = getStateFragment();
+        assertNotNull(fragment);
+        assertTrue(fragment instanceof CalculatorStateFragment);
     }
 
-    Fragment getFragmentById(int id) {
+    private Fragment getFragmentById(int id) {
         return activity.getSupportFragmentManager().findFragmentById(id);
+    }
+
+    private Fragment getStateFragment() {
+        return activity.getSupportFragmentManager().
+                findFragmentByTag(CalculatorActivity.STATE_FRAGMENT_TAG);
     }
 }
